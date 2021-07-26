@@ -8,7 +8,7 @@
 
 # API Documentation
 ## Product
-### GET /product
+### GET `/product`
 Example Request Body:
 ```
 {
@@ -39,3 +39,102 @@ Example Response:
     }
 ]
 ```
+
+### POST `/product/add`
+Example Request Body:
+```
+{
+    "name": "shrimp",
+    "quantity": 3,
+    "unit": "piece",
+    "purchaseDate": "2022-02-11T21:31:50.000Z",
+    "expiryDate": "2022-04-30T21:31:50.000Z",
+    "category": "seafood",
+    "locationStored": "freezer",
+    "notes": null,
+    "daysBeforeNotify": 3,
+    "status": "ready"
+}
+```
+Example Response:
+```
+{
+    "id": 10,
+    "name": "shrimp",
+    "quantity": "5",
+    "unit": "piece",
+    "purchaseDate": "2021-06-27T20:58:41.000Z",
+    "expiryDate": "2021-05-25T06:58:05.000Z",
+    "category": "seafood",
+    "locationStored": "fridge",
+    "notes": "molestie pharetra nibh. Aliquam",
+    "daysBeforeNotify": 3,
+    "status": "ready",
+    "createdAt": "2021-02-23T17:16:33.000Z",
+    "updatedAt": "2021-03-14T05:27:27.000Z"
+}
+```
+
+### PUT `/product/update/id/:id`
+Example Request Body:
+```
+{
+    "name": "shrimp",
+    "quantity": 3,
+    "unit": "piece",
+    "purchaseDate": "2022-02-11T21:31:50.000Z",
+    "expiryDate": "2022-04-30T21:31:50.000Z",
+    "category": "seafood",
+    "locationStored": "freezer",
+    "notes": null,
+    "daysBeforeNotify": 3,
+    "status": "ready"
+}
+```
+Example Response:
+```
+{
+    "id": 10,
+    "name": "shrimp",
+    "quantity": "5",
+    "unit": "piece",
+    "purchaseDate": "2021-06-27T20:58:41.000Z",
+    "expiryDate": "2021-05-25T06:58:05.000Z",
+    "category": "seafood",
+    "locationStored": "fridge",
+    "notes": "molestie pharetra nibh. Aliquam",
+    "daysBeforeNotify": 3,
+    "status": "ready",
+    "createdAt": "2021-02-23T17:16:33.000Z",
+    "updatedAt": "2021-03-14T05:27:27.000Z"
+}
+```
+
+### DELETE `/product/delete/id/:id`
+Example Response:
+```
+{
+    "id": 10,
+    "name": "shrimp",
+    "quantity": "5",
+    "unit": "piece",
+    "purchaseDate": "2021-06-27T20:58:41.000Z",
+    "expiryDate": "2021-05-25T06:58:05.000Z",
+    "category": "seafood",
+    "locationStored": "fridge",
+    "notes": "molestie pharetra nibh. Aliquam",
+    "daysBeforeNotify": 3,
+    "status": "ready",
+    "createdAt": "2021-02-23T17:16:33.000Z",
+    "updatedAt": "2021-03-14T05:27:27.000Z"
+}
+```
+
+## Grocery
+### GET `/grocery`
+
+### POST `/grocery/add`
+
+### PUT `/grocery/update/id/:id`
+
+### DELETE `/grocery/delete/id/:id`
