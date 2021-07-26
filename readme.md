@@ -7,6 +7,10 @@
 6. Open at `http://localhost:3000`
 
 # API Documentation
+[Product](#product)
+- [GET](#get-/product)
+[Grocery](#grocery)
+
 ## Product
 ### GET `/product`
 Example Request Body:
