@@ -5,11 +5,11 @@ const { Op } = require("sequelize");
 const Product = require("./../models/product");
 
 router.get("/", (req, res) => {
-    const body = req.body;
+    const query = req.query;
     let data = {};
     let where = {};
 
-    if (body.expired) {
+    if (query.expired === true) {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
         };
     }
 
-    if (body.expired === false) {
+    if (query.expired === false) {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
@@ -25,26 +25,27 @@ router.get("/", (req, res) => {
         };
     }
 
-    if (body.categories) {
+    if (query.category) {
         where.category = {
-            [Op.or]: body.categories
+            [Op.or]: query.category
         };
     }
 
-    if (body.locations) {
+    if (query.locationStored) {
         where.locationStored = {
-            [Op.or]: body.locations
+            [Op.or]: query.locationStored
         };
     }
 
-    if (body.status) {
-        where.status = body.status;
+    if (query.status) {
+        where.status = query.status;
     }
 
     data.where = where;
 
-    if (body.order) {
-        data.order = body.order;
+    if (query.orderBy) {
+        let ordering = query.ordering || "desc";
+        data.order = [[orderBy, ordering]];
     }
 
     Product.findAll(data).then((result) => {

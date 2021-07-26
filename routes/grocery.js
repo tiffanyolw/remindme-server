@@ -5,30 +5,31 @@ const { Op } = require("sequelize");
 const Grocery = require("./../models/grocery");
 
 router.get("/", (req, res) => {
-    const body = req.body;
+    const query = req.query;
     let data = {};
     let where = {};
 
-    if (body.bought !== undefined) {
-        where.bought = body.bought;
+    if (query.bought !== undefined) {
+        where.bought = query.bought;
     }
 
-    if (body.stores) {
+    if (query.storeName) {
         where.storeName = {
-            [Op.or]: body.stores
+            [Op.or]: query.storeName
         };
     }
 
-    if (body.categories) {
+    if (query.category) {
         where.category = {
-            [Op.or]: body.categories
+            [Op.or]: query.category
         };
     }
 
     data.where = where;
 
-    if (body.order) {
-        data.order = body.order;
+    if (query.orderBy) {
+        let ordering = query.ordering || "desc";
+        data.order = [[orderBy, ordering]];
     }
 
     Grocery.findAll(data).then((result) => {

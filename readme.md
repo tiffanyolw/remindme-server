@@ -21,15 +21,9 @@
 
 ## Product
 ### GET `/product`
-Example Request Body:
+Example Query:
 ```
-{
-    "expired": true,
-    "categories": ["seafood"],
-    "locations": ["fridge"],
-    "status": "ready",
-    "order": [["id", "desc"]]
-}
+?expired=true&category=seafood&locationStored=fridge&status=ready&orderBy=id&ordering=desc
 ```
 Example Response:
 ```
@@ -148,14 +142,9 @@ Example Response:
 
 ## Grocery
 ### GET `/grocery`
-Example Request Body:
+Example Query:
 ```
-{
-   "bought": true,
-   "stores": ["Food Basics", "Nofrills"],
-   "categories": ["seafood"],
-   "order": [["id", "desc"]]
-}
+?bought=true&storeName=Food Basics&storeName=Nofrills&category=seafood&orderBy=id&ordering=desc
 ```
 Example Response:
 ```
