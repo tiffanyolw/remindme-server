@@ -8,7 +8,8 @@
 
 # API Documentation
 [Product](#product)
-- [GET](#get-/product)
+- [GET](#get-product)
+
 [Grocery](#grocery)
 
 ## Product
