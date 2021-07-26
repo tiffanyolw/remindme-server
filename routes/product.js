@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
             [Op.lt]: today
-        }
+        };
     }
 
     if (body.expired === false) {
@@ -22,19 +22,19 @@ router.get("/", (req, res) => {
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
             [Op.gte]: today
-        }
+        };
     }
 
     if (body.categories) {
         where.category = {
             [Op.or]: body.categories
-        }
+        };
     }
 
     if (body.locations) {
         where.locationStored = {
             [Op.or]: body.locations
-        }
+        };
     }
 
     if (body.status) {

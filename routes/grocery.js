@@ -1,22 +1,35 @@
 const express = require("express");
 const router = express.Router();
+const { Op } = require("sequelize");
 
 const Grocery = require("./../models/grocery");
 
 router.get("/", (req, res) => {
+    const body = req.body;
     let data = {};
+    let where = {};
 
-    let queries = {};
-    if (req.query.storeName) {
-        queries.storeName = req.query.storeName;
+    if (body.bought !== undefined) {
+        where.bought = body.bought;
     }
-    if (req.query.category) {
-        queries.category = req.query.category;
+
+    if (body.stores) {
+        where.storeName = {
+            [Op.or]: body.stores
+        };
     }
-    if (req.query.bought) {
-        queries.bought = req.query.bought;
+
+    if (body.categories) {
+        where.category = {
+            [Op.or]: body.categories
+        };
     }
-    data.where = queries;
+
+    data.where = where;
+
+    if (body.order) {
+        data.order = body.order;
+    }
 
     Grocery.findAll(data).then((result) => {
         res.send(result);

@@ -132,9 +132,111 @@ Example Response:
 
 ## Grocery
 ### GET `/grocery`
+Example Request Body:
+```
+{
+   "bought": true,
+   "stores": ["Food Basics", "Nofrills"],
+   "categories": ["seafood"],
+   "order": [["id", "desc"]]
+}
+```
+Example Response:
+```
+[
+    {
+        "id": 9,
+        "name": "frozen lasagna",
+        "quantity": "10",
+        "unit": "pack,",
+        "price": "1",
+        "storeName": "Orci Tincidunt Adipiscing Corp.",
+        "category": "seafood",
+        "notes": "orci. Phasellus dapibus quam",
+        "bought": true,
+        "createdAt": "2022-01-21T15:46:31.000Z",
+        "updatedAt": "2022-04-14T06:49:22.000Z"
+    }
+]
+```
 
 ### POST `/grocery/add`
+Example Request Body:
+```
+{
+    "name": "frozen lasagna",
+    "quantity": 10,
+    "unit": "pack",
+    "price": 1,
+    "storeName": "Nofrills",
+    "category": "seafood",
+    "notes": "no notes",
+    "bought": false
+}
+```
+Example Response:
+```
+{
+    "id": 9,
+    "name": "frozen lasagna",
+    "quantity": "10",
+    "unit": "pack,",
+    "price": "1",
+    "storeName": "Nofrills",
+    "category": "seafood",
+    "notes": "no notes",
+    "bought": false,
+    "createdAt": "2022-01-21T15:46:31.000Z",
+    "updatedAt": "2022-04-14T06:49:22.000Z"
+}
+```
+
 
 ### PUT `/grocery/update/id/:id`
+Example Request Body:
+```
+{
+    "name": "frozen lasagna",
+    "quantity": 10,
+    "unit": "pack",
+    "price": 1,
+    "storeName": "Nofrills",
+    "category": "seafood",
+    "notes": "no notes",
+    "bought": false
+}
+```
+Example Response:
+```
+{
+    "id": 9,
+    "name": "frozen lasagna",
+    "quantity": "10",
+    "unit": "pack,",
+    "price": "1",
+    "storeName": "Nofrills",
+    "category": "seafood",
+    "notes": "no notes",
+    "bought": false,
+    "createdAt": "2022-01-21T15:46:31.000Z",
+    "updatedAt": "2022-04-14T06:49:22.000Z"
+}
+```
 
 ### DELETE `/grocery/delete/id/:id`
+Example Response:
+```
+{
+    "id": 9,
+    "name": "frozen lasagna",
+    "quantity": "10",
+    "unit": "pack,",
+    "price": "1",
+    "storeName": "Nofrills",
+    "category": "seafood",
+    "notes": "no notes",
+    "bought": false,
+    "createdAt": "2022-01-21T15:46:31.000Z",
+    "updatedAt": "2022-04-14T06:49:22.000Z"
+}
+```
