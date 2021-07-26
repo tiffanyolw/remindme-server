@@ -9,6 +9,9 @@
 # API Documentation
 [Product](#product)
 - [GET](#get-product)
+- [POST](#post-product-add)
+- [PUT](#product-update-id-:id)
+- [DELETE](#product-delete-id-:id)
 
 [Grocery](#grocery)
 
