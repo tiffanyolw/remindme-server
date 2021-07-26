@@ -1,26 +1,50 @@
 const express = require("express");
 const router = express.Router();
+const { Op } = require("sequelize");
 
 const Product = require("./../models/product");
 
 router.get("/", (req, res) => {
+    const body = req.body;
     let data = {};
+    let where = {};
 
-    let queries = {};
-    if (req.query.status) {
-        queries.status = req.query.status;
+    if (body.expired) {
+        let today = new Date(Date.now());
+        today.setHours(0, 0, 0, 0);
+        where.expiryDate = {
+            [Op.lt]: today
+        }
     }
-    if (req.query.category) {
-        queries.category = req.query.category;
-    }
-    if (req.query.locationStored) {
-        queries.locationStored = req.query.locationStored;
-    }
-    data.where = queries;
 
-    if (req.query.orderBy) {
-        let ordering = req.query.order || "DESC";
-        data.order = [[req.query.orderBy, ordering]];
+    if (body.expired === false) {
+        let today = new Date(Date.now());
+        today.setHours(0, 0, 0, 0);
+        where.expiryDate = {
+            [Op.gte]: today
+        }
+    }
+
+    if (body.categories) {
+        where.category = {
+            [Op.or]: body.categories
+        }
+    }
+
+    if (body.locations) {
+        where.locationStored = {
+            [Op.or]: body.locations
+        }
+    }
+
+    if (body.status) {
+        where.status = body.status;
+    }
+
+    data.where = where;
+
+    if (body.order) {
+        data.order = body.order;
     }
 
     Product.findAll(data).then((result) => {
@@ -50,7 +74,7 @@ router.put("/update/id/:id", (req, res) => {
         result.notes = req.body.notes;
         result.daysBeforeNotify = req.body.daysBeforeNotify;
         result.status = req.body.status;
-        
+
         result.save().then(() => {
             res.send(result);
         }).catch(() => {

@@ -40,7 +40,7 @@ const Product = config.define("Product", {
     },
     status: {
         type: Sequelize.ENUM,
-        values: ["ready", "consumed", "trashed", "expired"],
+        values: ["ready", "consumed", "trashed"],
         defaultValue: "ready",
         allowNull: false
     }
