@@ -9,11 +9,15 @@
 # API Documentation
 [Product](#product)
 - [GET](#get-product)
-- [POST](#post-product-add)
-- [PUT](#product-update-id-:id)
-- [DELETE](#product-delete-id-:id)
+- [POST](#post-productadd)
+- [PUT](#put-productupdateidid)
+- [DELETE](#delete-productdeleteidid)
 
 [Grocery](#grocery)
+- [GET](#get-grocery)
+- [POST](#post-groceryadd)
+- [PUT](#put-groceryupdateidid)
+- [DELETE](#delete-grocerydeleteidid)
 
 ## Product
 ### GET `/product`
@@ -47,6 +51,7 @@ Example Response:
     }
 ]
 ```
+[Back to top](#api-documentation)
 
 ### POST `/product/add`
 Example Request Body:
@@ -82,6 +87,7 @@ Example Response:
     "updatedAt": "2021-03-14T05:27:27.000Z"
 }
 ```
+[Back to top](#api-documentation)
 
 ### PUT `/product/update/id/:id`
 Example Request Body:
@@ -117,6 +123,7 @@ Example Response:
     "updatedAt": "2021-03-14T05:27:27.000Z"
 }
 ```
+[Back to top](#api-documentation)
 
 ### DELETE `/product/delete/id/:id`
 Example Response:
@@ -137,6 +144,7 @@ Example Response:
     "updatedAt": "2021-03-14T05:27:27.000Z"
 }
 ```
+[Back to top](#api-documentation)
 
 ## Grocery
 ### GET `/grocery`
@@ -167,6 +175,7 @@ Example Response:
     }
 ]
 ```
+[Back to top](#api-documentation)
 
 ### POST `/grocery/add`
 Example Request Body:
@@ -198,6 +207,7 @@ Example Response:
     "updatedAt": "2022-04-14T06:49:22.000Z"
 }
 ```
+[Back to top](#api-documentation)
 
 
 ### PUT `/grocery/update/id/:id`
@@ -230,6 +240,7 @@ Example Response:
     "updatedAt": "2022-04-14T06:49:22.000Z"
 }
 ```
+[Back to top](#api-documentation)
 
 ### DELETE `/grocery/delete/id/:id`
 Example Response:
@@ -248,3 +259,4 @@ Example Response:
     "updatedAt": "2022-04-14T06:49:22.000Z"
 }
 ```
+[Back to top](#api-documentation)
