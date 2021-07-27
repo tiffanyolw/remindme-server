@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     let where = {};
 
     if (query.bought !== undefined) {
-        where.bought = query.bought;
+        where.bought = (query.bought === "true");
     }
 
     if (query.storeName) {
