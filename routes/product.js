@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     let data = {};
     let where = {};
 
-    if (query.expired === true) {
+    if (query.expired === "true") {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
         };
     }
 
-    if (query.expired === false) {
+    if (query.expired === "false") {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
