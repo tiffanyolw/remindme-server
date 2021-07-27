@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     let data = {};
     let where = {};
 
-    if (query.bought !== undefined) {
+    if (query.bought) {
         where.bought = (query.bought === "true");
     }
 
