@@ -35,6 +35,8 @@ const Grocery = config.define("Grocery", {
         defaultValue: false,
         allowNull: false
     }
+}, {
+    tableName: 'ShoppingList'
 });
 
 module.exports = Grocery;

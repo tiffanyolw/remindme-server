@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 const environment = process.env.NODE_ENV || "development";
 
-let database = "emptyout";
+let database = "project";
 let username = "user";
 let password = "";
 let host = "localhost";

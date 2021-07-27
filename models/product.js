@@ -27,10 +27,12 @@ const Product = config.define("Product", {
         type: Sequelize.DATE
     },
     category: {
-        type: Sequelize.STRING(45)
+        type: Sequelize.STRING(45),
+        allowNull: false
     },
     locationStored: {
-        type: Sequelize.STRING(45)
+        type: Sequelize.STRING(45),
+        allowNull: false
     },
     notes: {
         type: Sequelize.STRING

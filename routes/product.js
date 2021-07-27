@@ -45,7 +45,7 @@ router.get("/", (req, res) => {
 
     if (query.orderBy) {
         let ordering = query.ordering || "desc";
-        data.order = [[orderBy, ordering]];
+        data.order = [[query.orderBy, ordering]];
     }
 
     Product.findAll(data).then((result) => {
