@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 config.authenticate().then(() => {
-    console.log("Sync Successful");
+    console.log("Database Connected");
 }).catch((err) => {
     console.log(err);
 });
