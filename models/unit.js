@@ -11,6 +11,9 @@ const Unit = config.define("Unit", {
     name: {
         type: Sequelize.STRING(45),
         allowNull: false
+    },
+    pluralName: {
+        type: Sequelize.STRING
     }
 }, {
     timestamps: false

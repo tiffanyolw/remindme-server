@@ -249,3 +249,6 @@ Example Response:
 }
 ```
 [Back to top](#api-documentation)
+
+## References
+Sequelize join tables: https://sequelizedocs.fullstackacademy.com/eager-loading/

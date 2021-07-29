@@ -62,6 +62,14 @@ Product.belongsTo(Category, {
     }
 });
 
+Category.hasMany(Product, {
+    foreignKey: {
+        name: "categoryId",
+        defaultValue: 1,
+        allowNull: false
+    }
+});
+
 Product.belongsTo(Location, {
     foreignKey: {
         name: "locationStoredId",
@@ -70,7 +78,23 @@ Product.belongsTo(Location, {
     }
 });
 
+Location.hasMany(Product, {
+    foreignKey: {
+        name: "locationStoredId",
+        defaultValue: 1,
+        allowNull: false
+    }
+});
+
 Product.belongsTo(Unit, {
+    foreignKey: {
+        name: "unitId",
+        defaultValue: 1,
+        allowNull: false
+    }
+});
+
+Unit.hasMany(Product, {
     foreignKey: {
         name: "unitId",
         defaultValue: 1,

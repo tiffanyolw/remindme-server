@@ -3,6 +3,9 @@ const router = express.Router();
 const { Op } = require("sequelize");
 
 const Product = require("./../models/product");
+const Category = require("../models/category");
+const Location = require("./../models/location");
+const Unit = require("./../models/unit");
 
 router.get("/", (req, res) => {
     const query = req.query;
@@ -50,6 +53,12 @@ router.get("/", (req, res) => {
     }
 
     data.where = where;
+
+    data.include = [
+        { model: Category },
+        { model: Location },
+        { model: Unit }
+    ];
 
     if (query.orderBy) {
         let ordering = query.ordering || "desc";
