@@ -15,6 +15,11 @@ const Product = config.define("Product", {
         type: Sequelize.STRING(45),
         allowNull: false
     },
+    unitId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        allowNull: false
+    },
     quantity: {
         type: Sequelize.DECIMAL,
         allowNull: false
@@ -24,6 +29,16 @@ const Product = config.define("Product", {
     },
     expiryDate: {
         type: Sequelize.DATE
+    },
+    categoryId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        allowNull: false
+    },
+    locationStoredId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        allowNull: false
     },
     notes: {
         type: Sequelize.STRING

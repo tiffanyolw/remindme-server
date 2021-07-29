@@ -19,9 +19,9 @@ router.get("/", (req, res) => {
         };
     }
 
-    if (query.category) {
-        where.category = {
-            [Op.or]: query.category
+    if (query.categoryId) {
+        where.categoryId = {
+            [Op.or]: query.categoryId
         };
     }
 

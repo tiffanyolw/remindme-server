@@ -17,11 +17,19 @@ const Grocery = config.define("Grocery", {
     quantity: {
         type: Sequelize.DECIMAL
     },
+    unitId: {
+        type: Sequelize.INTEGER
+    },
     price: {
         type: Sequelize.DECIMAL
     },
     storeName: {
         type: Sequelize.STRING(45)
+    },
+    categoryId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        allowNull: false
     },
     notes: {
         type: Sequelize.STRING

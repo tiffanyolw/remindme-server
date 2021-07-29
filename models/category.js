@@ -16,10 +16,4 @@ const Category = config.define("Category", {
     timestamps: false
 });
 
-Category.belongsTo(Category, {
-    foreignKey: {
-        name: "parentCategoryId"
-    }
-});
-
 module.exports = Category;
