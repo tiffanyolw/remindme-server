@@ -14,15 +14,23 @@ router.get("/", (req, res) => {
     }
 
     if (query.storeName) {
-        where.storeName = {
-            [Op.or]: query.storeName
-        };
+        if (query.storeName.length === 1) {
+            where.storeName = query.storeName;
+        } else {
+            where.storeName = {
+                [Op.or]: query.storeName
+            };
+        }
     }
 
-    if (query.category) {
-        where.category = {
-            [Op.or]: query.category
-        };
+    if (query.categoryId) {
+        if (query.categoryId.length === 1) {
+            where.categoryId = query.categoryId;
+        } else {
+            where.categoryId = {
+                [Op.or]: query.categoryId
+            };
+        }
     }
 
     data.where = where;

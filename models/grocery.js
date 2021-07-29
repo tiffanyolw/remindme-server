@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
 const config = require("./../configurations/config");
+const Category = require("./category");
+const Unit = require("./unit");
 
 const Grocery = config.define("Grocery", {
     id: {
@@ -15,8 +17,8 @@ const Grocery = config.define("Grocery", {
     quantity: {
         type: Sequelize.DECIMAL
     },
-    unit: {
-        type: Sequelize.STRING(45)
+    unitId: {
+        type: Sequelize.INTEGER
     },
     price: {
         type: Sequelize.DECIMAL
@@ -24,8 +26,10 @@ const Grocery = config.define("Grocery", {
     storeName: {
         type: Sequelize.STRING(45)
     },
-    category: {
-        type: Sequelize.STRING(45)
+    categoryId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        allowNull: false
     },
     notes: {
         type: Sequelize.STRING
@@ -37,6 +41,20 @@ const Grocery = config.define("Grocery", {
     }
 }, {
     tableName: 'ShoppingList'
+});
+
+Grocery.belongsTo(Category, {
+    foreignKey: {
+        name: "categoryId",
+        defaultValue: 1,
+        allowNull: false
+    }
+});
+
+Grocery.belongsTo(Unit, {
+    foreignKey: {
+        name: "unitId"
+    }
 });
 
 module.exports = Grocery;

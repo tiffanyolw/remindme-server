@@ -1,4 +1,4 @@
-# Steps to run locally
+## Steps to run locally
 1. `npm install`
 2. Update DB config in `config.js`
 3. Ensure MySQL service is started
@@ -6,7 +6,7 @@
 5. `npm start` to start the server
 6. Open at `http://localhost:3000`
 
-# API Documentation
+## API Documentation
 [Product](#product)
 - [GET](#get-product)
 - [POST](#post-productadd)
@@ -19,8 +19,8 @@
 - [PUT](#put-groceryupdateidid)
 - [DELETE](#delete-grocerydeleteidid)
 
-## Product
-### GET `/product`
+### Product
+#### GET `/product`
 Example Query:
 ```
 ?expired=true&category=seafood&locationStored=fridge&status=ready&orderBy=id&ordering=desc
@@ -47,7 +47,7 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-### POST `/product/add`
+#### POST `/product/add`
 Example Request Body:
 ```
 {
@@ -83,7 +83,7 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-### PUT `/product/update/id/:id`
+#### PUT `/product/update/id/:id`
 Example Request Body:
 ```
 {
@@ -119,7 +119,7 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-### DELETE `/product/delete/id/:id`
+#### DELETE `/product/delete/id/:id`
 Example Response:
 ```
 {
@@ -140,8 +140,8 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-## Grocery
-### GET `/grocery`
+### Grocery
+#### GET `/grocery`
 Example Query:
 ```
 ?bought=true&storeName=Food Basics&storeName=Nofrills&category=seafood&orderBy=id&ordering=desc
@@ -166,7 +166,7 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-### POST `/grocery/add`
+#### POST `/grocery/add`
 Example Request Body:
 ```
 {
@@ -199,7 +199,7 @@ Example Response:
 [Back to top](#api-documentation)
 
 
-### PUT `/grocery/update/id/:id`
+#### PUT `/grocery/update/id/:id`
 Example Request Body:
 ```
 {
@@ -231,7 +231,7 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-### DELETE `/grocery/delete/id/:id`
+#### DELETE `/grocery/delete/id/:id`
 Example Response:
 ```
 {

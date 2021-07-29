@@ -1,5 +1,8 @@
 const Sequelize = require("sequelize");
 const config = require("./../configurations/config");
+const Category = require("./category");
+const Location = require("./location");
+const Unit = require("./unit");
 
 const Product = config.define("Product", {
     id: {
@@ -12,12 +15,13 @@ const Product = config.define("Product", {
         type: Sequelize.STRING(45),
         allowNull: false
     },
-    quantity: {
-        type: Sequelize.DECIMAL,
+    unitId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
         allowNull: false
     },
-    unit: {
-        type: Sequelize.STRING(45),
+    quantity: {
+        type: Sequelize.DECIMAL,
         allowNull: false
     },
     purchaseDate: {
@@ -26,12 +30,14 @@ const Product = config.define("Product", {
     expiryDate: {
         type: Sequelize.DATE
     },
-    category: {
-        type: Sequelize.STRING(45),
+    categoryId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
         allowNull: false
     },
-    locationStored: {
-        type: Sequelize.STRING(45),
+    locationStoredId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
         allowNull: false
     },
     notes: {
@@ -44,6 +50,30 @@ const Product = config.define("Product", {
         type: Sequelize.ENUM,
         values: ["ready", "consumed", "trashed"],
         defaultValue: "ready",
+        allowNull: false
+    }
+});
+
+Product.belongsTo(Category, {
+    foreignKey: {
+        name: "categoryId",
+        defaultValue: 1,
+        allowNull: false
+    }
+});
+
+Product.belongsTo(Location, {
+    foreignKey: {
+        name: "locationStoredId",
+        defaultValue: 1,
+        allowNull: false
+    }
+});
+
+Product.belongsTo(Unit, {
+    foreignKey: {
+        name: "unitId",
+        defaultValue: 1,
         allowNull: false
     }
 });

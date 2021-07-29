@@ -25,16 +25,24 @@ router.get("/", (req, res) => {
         };
     }
 
-    if (query.category) {
-        where.category = {
-            [Op.or]: query.category
-        };
+    if (query.categoryId) {
+        if (query.categoryId.length === 1) {
+            where.categoryId = query.categoryId;
+        } else {
+            where.categoryId = {
+                [Op.or]: query.categoryId
+            };
+        }
     }
 
-    if (query.locationStored) {
-        where.locationStored = {
-            [Op.or]: query.locationStored
-        };
+    if (query.locationStoredId) {
+        if (query.locationStoredId.length === 1) {
+            where.locationStoredId = query.locationStoredId;
+        } else {
+            where.locationStoredId = {
+                [Op.or]: query.locationStoredId
+            };
+        }
     }
 
     if (query.status) {
