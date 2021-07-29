@@ -26,10 +26,11 @@ router.get("/", (req, res) => {
     if (query.categoryId) {
         if (query.categoryId.length === 1) {
             where.categoryId = query.categoryId;
+        } else {
+            where.categoryId = {
+                [Op.or]: query.categoryId
+            };
         }
-        where.categoryId = {
-            [Op.or]: query.categoryId
-        };
     }
 
     data.where = where;
