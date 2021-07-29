@@ -26,15 +26,23 @@ router.get("/", (req, res) => {
     }
 
     if (query.categoryId) {
-        where.categoryId = {
-            [Op.or]: query.categoryId
-        };
+        if (query.categoryId.length === 1) {
+            where.categoryId = query.categoryId;
+        } else {
+            where.categoryId = {
+                [Op.or]: query.categoryId
+            };
+        }
     }
 
     if (query.locationStoredId) {
-        where.locationStoredId = {
-            [Op.or]: query.locationStoredId
-        };
+        if (query.locationStoredId.length === 1) {
+            where.locationStoredId = query.locationStoredId;
+        } else {
+            where.locationStoredId = {
+                [Op.or]: query.locationStoredId
+            };
+        }
     }
 
     if (query.status) {
