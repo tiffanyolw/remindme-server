@@ -24,6 +24,16 @@ const Product = config.define("Product", {
         type: Sequelize.DECIMAL,
         allowNull: false
     },
+    quantityConsumed: {
+        type: Sequelize.DECIMAL,
+        default: 0,
+        allowNull: false
+    },
+    quantityTrashed: {
+        type: Sequelize.DECIMAL,
+        default: 0,
+        allowNull: false
+    },
     purchaseDate: {
         type: Sequelize.DATE
     },

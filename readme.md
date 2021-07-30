@@ -250,5 +250,5 @@ Example Response:
 ```
 [Back to top](#api-documentation)
 
-## References
+## Helpful Links
 Sequelize join tables: https://sequelizedocs.fullstackacademy.com/eager-loading/

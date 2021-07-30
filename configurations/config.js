@@ -9,7 +9,7 @@ let host = "localhost";
 let dialect = "mysql";
 
 if (environment === "production") {
-    // TO DO
+    // omitted for git
 }
 
 const config = new Sequelize(database, username, password, { host, dialect });
