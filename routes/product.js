@@ -86,13 +86,13 @@ router.get("/id/:id", (req, res) => {
 router.get("/expiring", (req, res) => {
     let data = {};
     let where = {};
-    if (req.query.daysLeft) {
+    if (req.query.expiringIn) {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
 
         let after = new Date(Date.now());
         after.setHours(0, 0, 0, 0);
-        after.setDate(today.getDate() + req.query.daysLeft);
+        after.setDate(today.getDate() + req.query.expiringIn);
         
         where.expiryDate = {
             [Op.lte]: after,
