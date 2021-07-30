@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
-const config = require("./../configurations/config");
 
 const Product = require("./../models/product");
 const Category = require("../models/category");
@@ -67,7 +66,6 @@ router.get("/", (req, res) => {
     if (query.orderBy) {
         let ordering = query.ordering || "desc";
         data.order = [
-            config.fn('isnull', config.col(query.orderBy)), // to put null last
             [query.orderBy, ordering]
         ];
     }
