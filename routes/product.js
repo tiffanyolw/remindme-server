@@ -78,7 +78,13 @@ router.get("/", (req, res) => {
 });
 
 router.get("/id/:id", (req, res) => {
-    Product.findByPk(req.params.id).then((result) => {
+    Product.findByPk(req.params.id, {
+        include: [
+            { model: Category, as: "category" },
+            { model: Location, as: "locationStored" },
+            { model: Unit, as: "unit" }
+        ]
+    }).then((result) => {
         res.send(result);
     }).catch(() => {
         res.status(500).send("Could not get product");
