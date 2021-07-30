@@ -24,7 +24,10 @@ router.get("/", (req, res) => {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
-            [Op.gte]: today
+            [Op.or]: {
+                [Op.gte]: today,
+                [Op.eq]: null
+            }
         };
     }
 
@@ -55,14 +58,50 @@ router.get("/", (req, res) => {
     data.where = where;
 
     data.include = [
-        { model: Category },
-        { model: Location },
-        { model: Unit }
+        { model: Category, as: "category" },
+        { model: Location, as: "locationStored" },
+        { model: Unit, as: "unit" }
     ];
 
     if (query.orderBy) {
         let ordering = query.ordering || "desc";
-        data.order = [[query.orderBy, ordering]];
+        data.order = [
+            [query.orderBy, ordering]
+        ];
+    }
+
+    Product.findAll(data).then((result) => {
+        res.send(result);
+    }).catch(() => {
+        res.status(500).send("Could not get products");
+    });
+});
+
+router.get("/id/:id", (req, res) => {
+    Product.findByPk(req.params.id).then((result) => {
+        res.send(result);
+    }).catch(() => {
+        res.status(500).send("Could not get product");
+    });
+});
+
+router.get("/expiring", (req, res) => {
+    let data = {};
+    let where = {};
+    if (req.query.expiringIn) {
+        let today = new Date(Date.now());
+        today.setHours(0, 0, 0, 0);
+
+        let after = new Date(Date.now());
+        after.setHours(0, 0, 0, 0);
+        after.setDate(today.getDate() + parseInt(req.query.expiringIn) + 1);
+
+        where.expiryDate = {
+            [Op.lt]: after,
+            [Op.gte]: today
+        };
+
+        data.where = where;
     }
 
     Product.findAll(data).then((result) => {
@@ -84,11 +123,11 @@ router.put("/update/id/:id", (req, res) => {
     Product.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.quantity = req.body.quantity;
-        result.unit = req.body.unit;
+        result.unitId = req.body.unitId;
         result.purchaseDate = req.body.purchaseDate;
         result.expiryDate = req.body.expiryDate;
-        result.category = req.body.category;
-        result.locationStored = req.body.locationStored;
+        result.categoryId = req.body.categoryId;
+        result.locationStoredId = req.body.locationStoredId;
         result.notes = req.body.notes;
         result.daysBeforeNotify = req.body.daysBeforeNotify;
         result.status = req.body.status;
