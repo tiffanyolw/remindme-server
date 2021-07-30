@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
         where.expiryDate = {
-            [Op.lt]: today,
+            [Op.lt]: today
         };
     }
 
