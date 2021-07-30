@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
+const config = require("./../configurations/config");
 
 const Product = require("./../models/product");
 const Category = require("../models/category");
@@ -65,7 +66,10 @@ router.get("/", (req, res) => {
 
     if (query.orderBy) {
         let ordering = query.ordering || "desc";
-        data.order = [[query.orderBy, ordering]];
+        data.order = [
+            config.fn('isnull', config.col(query.orderBy)), // to put null last
+            [query.orderBy, ordering]
+        ];
     }
 
     Product.findAll(data).then((result) => {
@@ -93,7 +97,7 @@ router.get("/expiring", (req, res) => {
         let after = new Date(Date.now());
         after.setHours(0, 0, 0, 0);
         after.setDate(today.getDate() + parseInt(req.query.expiringIn) + 1);
-        
+
         where.expiryDate = {
             [Op.lt]: after,
             [Op.gte]: today
