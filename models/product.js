@@ -59,7 +59,8 @@ Product.belongsTo(Category, {
         name: "categoryId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "category"
 });
 
 Category.hasMany(Product, {
@@ -67,7 +68,8 @@ Category.hasMany(Product, {
         name: "categoryId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "category"
 });
 
 Product.belongsTo(Location, {
@@ -75,7 +77,8 @@ Product.belongsTo(Location, {
         name: "locationStoredId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "locationStored"
 });
 
 Location.hasMany(Product, {
@@ -83,7 +86,8 @@ Location.hasMany(Product, {
         name: "locationStoredId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "locationStored"
 });
 
 Product.belongsTo(Unit, {
@@ -91,7 +95,8 @@ Product.belongsTo(Unit, {
         name: "unitId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "unit"
 });
 
 Unit.hasMany(Product, {
@@ -99,7 +104,8 @@ Unit.hasMany(Product, {
         name: "unitId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "unit"
 });
 
 module.exports = Product;

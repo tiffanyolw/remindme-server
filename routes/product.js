@@ -55,9 +55,9 @@ router.get("/", (req, res) => {
     data.where = where;
 
     data.include = [
-        { model: Category },
-        { model: Location },
-        { model: Unit }
+        { model: Category, as: "category" },
+        { model: Location, as: "locationStored" },
+        { model: Unit, as: "unit" }
     ];
 
     if (query.orderBy) {
@@ -69,6 +69,14 @@ router.get("/", (req, res) => {
         res.send(result);
     }).catch(() => {
         res.status(500).send("Could not get products");
+    });
+});
+
+router.get("/id/:id", (req, res) => {
+    Product.findByPk(req.params.id).then((result) => {
+        res.send(result);
+    }).catch(() => {
+        res.status(500).send("Could not get product");
     });
 });
 
