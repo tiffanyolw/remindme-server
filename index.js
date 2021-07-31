@@ -4,7 +4,7 @@ const cors = require("cors");
 const config = require("./configurations/config");
 
 const product = require("./routes/product");
-const grocery = require("./routes/grocery");
+const shopping = require("./routes/shopping");
 const category = require("./routes/category");
 const location = require("./routes/location");
 const unit = require("./routes/unit");
@@ -25,7 +25,7 @@ config.sync({ force: false }).then(() => {
 });
 
 app.use("/product", product);
-app.use("/shopping", grocery);
+app.use("/shopping", shopping);
 app.use("/category", category);
 app.use("/location", location);
 app.use("/unit", unit);

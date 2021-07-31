@@ -7,11 +7,12 @@ let username = "user";
 let password = "";
 let host = "localhost";
 let dialect = "mysql";
+let dialectOptions = { decimalNumbers: true }; // to not return decimals as string
 
 if (environment === "production") {
-    // TO DO
+    // omitted for git
 }
 
-const config = new Sequelize(database, username, password, { host, dialect });
+const config = new Sequelize(database, username, password, { host, dialect, dialectOptions });
 
 module.exports = config;
