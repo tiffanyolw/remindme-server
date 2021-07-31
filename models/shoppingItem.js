@@ -15,13 +15,13 @@ const ShoppingItem = config.define("ShoppingItem", {
         allowNull: false
     },
     quantity: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10, 2)
     },
     unitId: {
         type: Sequelize.INTEGER
     },
     price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10, 2)
     },
     storeName: {
         type: Sequelize.STRING(45)
