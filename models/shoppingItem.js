@@ -3,7 +3,7 @@ const config = require("./../configurations/config");
 const Category = require("./category");
 const Unit = require("./unit");
 
-const Grocery = config.define("Grocery", {
+const ShoppingItem = config.define("ShoppingItem", {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -38,23 +38,47 @@ const Grocery = config.define("Grocery", {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false
+    },
+    cleared: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
     }
 }, {
     tableName: 'ShoppingList'
 });
 
-Grocery.belongsTo(Category, {
+// need to append `item` or it will have an alias on two separate associations error (already associated in product)
+ShoppingItem.belongsTo(Category, {
     foreignKey: {
         name: "categoryId",
         defaultValue: 1,
         allowNull: false
-    }
+    },
+    as: "itemCategory"
 });
 
-Grocery.belongsTo(Unit, {
+Category.hasMany(ShoppingItem, {
+    foreignKey: {
+        name: "categoryId",
+        defaultValue: 1,
+        allowNull: false
+    },
+    as: "itemCategory"
+});
+
+ShoppingItem.belongsTo(Unit, {
     foreignKey: {
         name: "unitId"
-    }
+    },
+    as: "itemUnit"
 });
 
-module.exports = Grocery;
+Unit.hasMany(ShoppingItem, {
+    foreignKey: {
+        name: "unitId"
+    },
+    as: "itemUnit"
+});
+
+module.exports = ShoppingItem;

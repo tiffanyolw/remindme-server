@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
+const Category = require("../models/category");
+const Unit = require("../models/unit");
 
-const Grocery = require("./../models/grocery");
+const ShoppingItem = require("./../models/shoppingItem");
 
 router.get("/", (req, res) => {
     const query = req.query;
@@ -11,6 +13,10 @@ router.get("/", (req, res) => {
 
     if (query.bought) {
         where.bought = (query.bought === "true");
+    }
+
+    if (query.cleared) {
+        where.cleared = (query.cleared === "true");
     }
 
     if (query.storeName) {
@@ -35,28 +41,48 @@ router.get("/", (req, res) => {
 
     data.where = where;
 
+    data.include = [
+        { model: Category, as: "itemCategory" },
+        { model: Unit, as: "itemUnit" }
+    ];
+
     if (query.orderBy) {
         let ordering = query.ordering || "desc";
-        data.order = [[query.orderBy, ordering]];
+        data.order = [
+            [query.orderBy, ordering]
+        ];
     }
 
-    Grocery.findAll(data).then((result) => {
+    ShoppingItem.findAll(data).then((result) => {
         res.send(result);
     }).catch(() => {
-        res.status(500).send("Could not get groceries");
+        res.status(500).send("Could not get items");
+    });
+});
+
+router.get("/id/:id", (req, res) => {
+    ShoppingItem.findByPk(req.params.id, {
+        include: [
+            { model: Category, as: "itemCategory" },
+            { model: Unit, as: "itemUnit" }
+        ]
+    }).then((result) => {
+        res.send(result);
+    }).catch(() => {
+        res.status(500).send("Could not get item");
     });
 });
 
 router.post("/add", (req, res) => {
-    Grocery.create(req.body).then((result) => {
+    ShoppingItem.create(req.body).then((result) => {
         res.send(result);
     }).catch(() => {
-        res.status(500).send("Could not add grocery");
+        res.status(500).send("Could not add item");
     });
 });
 
 router.put("/update/id/:id", (req, res) => {
-    Grocery.findByPk(req.params.id).then((result) => {
+    ShoppingItem.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.quantity = req.body.quantity;
         result.unit = req.body.unit;
@@ -65,26 +91,27 @@ router.put("/update/id/:id", (req, res) => {
         result.category = req.body.category;
         result.notes = req.body.notes;
         result.bought = req.body.bought;
+        result.cleared = req.body.cleared;
 
         result.save().then(() => {
             res.send(result);
         }).catch(() => {
-            res.status(500).send("Could not update grocery");
+            res.status(500).send("Could not update item");
         });
     }).catch(() => {
-        res.status(500).send("Could not update grocery");
+        res.status(500).send("Could not update item");
     });
 });
 
 router.delete("/delete/id/:id", (req, res) => {
-    Grocery.findByPk(req.params.id).then((result) => {
+    ShoppingItem.findByPk(req.params.id).then((result) => {
         result.destroy().then(() => {
             res.send(result);
         }).catch(() => {
-            res.status(500).send("Could not delete grocery");
+            res.status(500).send("Could not delete item");
         });
     }).catch(() => {
-        res.status(500).send("Could not delete grocery");
+        res.status(500).send("Could not delete item");
     });
 });
 

@@ -252,3 +252,4 @@ Example Response:
 
 ## Helpful Links
 Sequelize join tables: https://sequelizedocs.fullstackacademy.com/eager-loading/
+https://github.com/sequelize/sequelize/issues/8263
