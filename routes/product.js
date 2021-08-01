@@ -10,7 +10,9 @@ const Unit = require("./../models/unit");
 router.get("/", (req, res) => {
     const query = req.query;
     let data = {};
-    let where = {};
+    let where = {
+        userId: req.query.userId
+    };
 
     if (query.expired === "true") {
         let today = new Date(Date.now());
@@ -81,7 +83,10 @@ router.get("/id/:id", (req, res) => {
 
 router.get("/expiring", (req, res) => {
     let data = {};
-    let where = {};
+    let where = {
+        userId: req.query.userId
+    };
+
     if (req.query.expiringIn) {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);

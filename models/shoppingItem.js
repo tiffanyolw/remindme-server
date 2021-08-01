@@ -10,6 +10,10 @@ const ShoppingItem = config.define("ShoppingItem", {
         autoIncrement: true,
         primaryKey: true
     },
+    userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     name: {
         type: Sequelize.STRING(45),
         allowNull: false

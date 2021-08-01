@@ -8,7 +8,9 @@ const Unit = require("../models/unit");
 router.get("/", (req, res) => {
     const query = req.query;
     let data = {};
-    let where = {};
+    let where = {
+        userId: req.query.userId
+    };
 
     if (query.bought) {
         where.bought = (query.bought === "true");
