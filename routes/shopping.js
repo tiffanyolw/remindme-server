@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { Op } = require("sequelize");
-const Category = require("../models/category");
-const Unit = require("../models/unit");
 
 const ShoppingItem = require("./../models/shoppingItem");
+const Category = require("../models/category");
+const Unit = require("../models/unit");
 
 router.get("/", (req, res) => {
     const query = req.query;
