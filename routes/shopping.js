@@ -20,23 +20,11 @@ router.get("/", (req, res) => {
     }
 
     if (query.storeName) {
-        if (query.storeName.length === 1) {
-            where.storeName = query.storeName;
-        } else {
-            where.storeName = {
-                [Op.or]: query.storeName
-            };
-        }
+        where.storeName = query.storeName;
     }
 
     if (query.categoryId) {
-        if (query.categoryId.length === 1) {
-            where.categoryId = query.categoryId;
-        } else {
-            where.categoryId = {
-                [Op.or]: query.categoryId
-            };
-        }
+        where.categoryId = query.categoryId;
     }
 
     data.where = where;
@@ -85,10 +73,10 @@ router.put("/update/id/:id", (req, res) => {
     ShoppingItem.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.quantity = req.body.quantity;
-        result.unit = req.body.unit;
+        result.unitId = req.body.unitId;
         result.price = req.body.price;
         result.storeName = req.body.storeName;
-        result.category = req.body.category;
+        result.categoryId = req.body.categoryId;
         result.notes = req.body.notes;
         result.bought = req.body.bought;
         result.cleared = req.body.cleared;
