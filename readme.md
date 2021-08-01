@@ -7,7 +7,7 @@
 6. Open at `http://localhost:3000`
 
 ## API Documentation
-[]()
+-[Routes and usage examples](_Docs/api-documentation.md)
 
 ## Helpful Links
 Sequelize join tables: https://sequelizedocs.fullstackacademy.com/eager-loading/
