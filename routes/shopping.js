@@ -20,23 +20,11 @@ router.get("/", (req, res) => {
     }
 
     if (query.storeName) {
-        if (query.storeName.length === 1) {
-            where.storeName = query.storeName;
-        } else {
-            where.storeName = {
-                [Op.or]: query.storeName
-            };
-        }
+        where.storeName = query.storeName;
     }
 
     if (query.categoryId) {
-        if (query.categoryId.length === 1) {
-            where.categoryId = query.categoryId;
-        } else {
-            where.categoryId = {
-                [Op.or]: query.categoryId
-            };
-        }
+        where.categoryId = query.categoryId;
     }
 
     data.where = where;
