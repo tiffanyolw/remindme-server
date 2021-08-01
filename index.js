@@ -8,6 +8,7 @@ const shopping = require("./routes/shopping");
 const category = require("./routes/category");
 const location = require("./routes/location");
 const unit = require("./routes/unit");
+const user = require("./routes/user");
 
 app.use(express.json());
 app.use(cors());
@@ -29,6 +30,7 @@ app.use("/shopping", shopping);
 app.use("/category", category);
 app.use("/location", location);
 app.use("/unit", unit);
+app.use("/user", user);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

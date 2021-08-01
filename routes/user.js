@@ -23,7 +23,7 @@ router.post("/register", (req, res) => {
     });
 });
 
-app.post("/login", (req, res) => {
+router.post("/login", (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
     let userData = {
@@ -36,7 +36,7 @@ app.post("/login", (req, res) => {
                 if (output) {
                     res.send(result);
                 } else {
-                    res.send(400).send("Incorrect password");
+                    res.status(400).send("Incorrect password");
                 }
             });
         } else {
