@@ -108,7 +108,7 @@ router.get("/expiring", (req, res) => {
 router.post("/add", (req, res) => {
     Product.create(req.body).then((result) => {
         res.send(result);
-    }).catch(() => {
+    }).catch((err) => {
         res.status(500).send("Could not add product");
     });
 });
