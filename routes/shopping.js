@@ -5,11 +5,11 @@ const ShoppingItem = require("./../models/shoppingItem");
 const Category = require("../models/category");
 const Unit = require("../models/unit");
 
-router.get("/", (req, res) => {
+router.get("/user/:userId", (req, res) => {
     const query = req.query;
     let data = {};
     let where = {
-        userId: req.query.userId
+        userId: req.params.userId
     };
 
     if (query.bought) {

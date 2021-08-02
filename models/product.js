@@ -69,6 +69,13 @@ const Product = config.define("Product", {
     }
 });
 
+Product.belongsTo(User, {
+    foreignKey: {
+        name: "userId",
+        allowNull: false
+    }
+});
+
 Product.belongsTo(Category, {
     foreignKey: {
         name: "categoryId",

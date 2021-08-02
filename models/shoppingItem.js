@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const config = require("./../configurations/config");
 const Category = require("./category");
 const Unit = require("./unit");
+const User = require("./user");
 
 const ShoppingItem = config.define("ShoppingItem", {
     id: {
@@ -53,6 +54,13 @@ const ShoppingItem = config.define("ShoppingItem", {
 });
 
 // need to append `item` or it will have an alias on two separate associations error (already associated in product)
+ShoppingItem.belongsTo(User, {
+    foreignKey: {
+        name: "userId",
+        allowNull: false
+    }
+});
+
 ShoppingItem.belongsTo(Category, {
     foreignKey: {
         name: "categoryId",

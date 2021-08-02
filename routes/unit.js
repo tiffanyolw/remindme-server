@@ -3,8 +3,12 @@ const router = express.Router();
 
 const Unit = require("./../models/unit");
 
-router.get("/", (req, res) => {
-    Unit.findAll().then((result) => {
+router.get("/user/:userId", (req, res) => {
+    Unit.findAll({
+        where: {
+            userId: req.params.userId
+        }
+    }).then((result) => {
         res.send(result);
     }).catch(() => {
         res.status(500).send("Could not get units");

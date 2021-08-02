@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     const query = req.query;
     let data = {};
     let where = {
-        userId: req.query.userId
+        userId: req.params.userId
     };
 
     if (query.expired === "true") {
@@ -84,7 +84,7 @@ router.get("/id/:id", (req, res) => {
 router.get("/expiring", (req, res) => {
     let data = {};
     let where = {
-        userId: req.query.userId
+        userId: req.params.userId
     };
 
     if (req.query.expiringIn) {
