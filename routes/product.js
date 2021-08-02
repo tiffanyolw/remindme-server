@@ -7,10 +7,12 @@ const Category = require("../models/category");
 const Location = require("./../models/location");
 const Unit = require("./../models/unit");
 
-router.get("/", (req, res) => {
+router.get("/user/:userId", (req, res) => {
     const query = req.query;
     let data = {};
-    let where = {};
+    let where = {
+        userId: req.params.userId
+    };
 
     if (query.expired === "true") {
         let today = new Date(Date.now());
@@ -65,7 +67,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/id/:id", (req, res) => {
+router.get("/user/:userId/id/:id", (req, res) => {
     Product.findByPk(req.params.id, {
         include: [
             { model: Category, as: "category" },
@@ -79,9 +81,11 @@ router.get("/id/:id", (req, res) => {
     });
 });
 
-router.get("/expiring", (req, res) => {
+router.get("/user/:userId/expiring", (req, res) => {
     let data = {};
-    let where = {};
+    let where = {
+        userId: req.params.userId
+    };
     if (req.query.expiringIn) {
         let today = new Date(Date.now());
         today.setHours(0, 0, 0, 0);
@@ -105,7 +109,8 @@ router.get("/expiring", (req, res) => {
     });
 });
 
-router.post("/add", (req, res) => {
+router.post("/user/:userId/add", (req, res) => {
+    req.body.userId = req.params.userId;
     Product.create(req.body).then((result) => {
         res.send(result);
     }).catch((err) => {
@@ -113,7 +118,7 @@ router.post("/add", (req, res) => {
     });
 });
 
-router.put("/update/id/:id", (req, res) => {
+router.put("/user/:userId/update/id/:id", (req, res) => {
     Product.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.quantity = req.body.quantity;
@@ -138,7 +143,7 @@ router.put("/update/id/:id", (req, res) => {
     });
 });
 
-router.delete("/delete/id/:id", (req, res) => {
+router.delete("/user/:userId/delete/id/:id", (req, res) => {
     Product.findByPk(req.params.id).then((result) => {
         result.destroy().then(() => {
             res.send(result);

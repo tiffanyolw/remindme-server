@@ -5,10 +5,12 @@ const ShoppingItem = require("./../models/shoppingItem");
 const Category = require("../models/category");
 const Unit = require("../models/unit");
 
-router.get("/", (req, res) => {
+router.get("/user/:userId", (req, res) => {
     const query = req.query;
     let data = {};
-    let where = {};
+    let where = {
+        userId: req.params.userId
+    };
 
     if (query.bought) {
         where.bought = (query.bought === "true");
@@ -47,7 +49,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/id/:id", (req, res) => {
+router.get("/user/:userId/id/:id", (req, res) => {
     ShoppingItem.findByPk(req.params.id, {
         include: [
             { model: Category, as: "itemCategory" },
@@ -60,7 +62,8 @@ router.get("/id/:id", (req, res) => {
     });
 });
 
-router.post("/add", (req, res) => {
+router.post("/user/:userId/add", (req, res) => {
+    req.body.userId = req.params.userId;
     ShoppingItem.create(req.body).then((result) => {
         res.send(result);
     }).catch(() => {
@@ -68,7 +71,7 @@ router.post("/add", (req, res) => {
     });
 });
 
-router.put("/update/id/:id", (req, res) => {
+router.put("/user/:userId/update/id/:id", (req, res) => {
     ShoppingItem.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.quantity = req.body.quantity;
@@ -90,7 +93,7 @@ router.put("/update/id/:id", (req, res) => {
     });
 });
 
-router.delete("/delete/id/:id", (req, res) => {
+router.delete("/user/:userId/delete/id/:id", (req, res) => {
     ShoppingItem.findByPk(req.params.id).then((result) => {
         result.destroy().then(() => {
             res.send(result);
