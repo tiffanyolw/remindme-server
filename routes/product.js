@@ -81,7 +81,7 @@ router.get("/id/:id", (req, res) => {
     });
 });
 
-router.get("/user/:userId/expiring", (req, res) => {
+router.get("/expiring/user/:userId", (req, res) => {
     let data = {};
     let where = {
         userId: req.params.userId
