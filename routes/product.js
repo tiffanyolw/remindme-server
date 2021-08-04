@@ -129,7 +129,9 @@ router.put("/update/id/:id", (req, res) => {
         result.categoryId = req.body.categoryId;
         result.locationStoredId = req.body.locationStoredId;
         result.notes = req.body.notes;
+        result.onExpiryNotify = req.body.onExpiryNotify;
         result.daysBeforeNotify = req.body.daysBeforeNotify;
+        result.daysAfterNotify = req.body.daysAfterNotify;
         result.status = req.body.status;
 
         result.save().then(() => {
