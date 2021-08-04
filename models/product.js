@@ -65,7 +65,9 @@ const Product = config.define("Product", {
         type: Sequelize.INTEGER
     },
     onExpiryNotify: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
     },
     status: {
         type: Sequelize.ENUM,
