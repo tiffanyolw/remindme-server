@@ -3,7 +3,8 @@
 - [Angular Web App](https://github.com/tiffanyolw/remindme-web)
 
 ## Contents
-- [Api Documentation](_Docs/api-doc.md)
+- [API Documentation](_Docs/api-doc.md)
+- [Backlog](_Docs/backlog.md)
 
 ## Steps to run locally
 1. `npm install`
