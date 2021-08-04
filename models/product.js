@@ -61,6 +61,14 @@ const Product = config.define("Product", {
     daysBeforeNotify: {
         type: Sequelize.INTEGER
     },
+    daysAfterNotify: {
+        type: Sequelize.INTEGER
+    },
+    onExpiryNotify: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+    },
     status: {
         type: Sequelize.ENUM,
         values: ["ready", "consumed", "trashed"],
