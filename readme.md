@@ -15,6 +15,6 @@
 - Node.js with Express and MySQL
 
 ## Helpful Links
-Sequelize join tables: https://sequelizedocs.fullstackacademy.com/eager-loading/
+- Sequelize join tables: https://sequelizedocs.fullstackacademy.com/eager-loading/
 https://github.com/sequelize/sequelize/issues/8263
-Don't return decimals as string: https://github.com/sequelize/sequelize/issues/8019
+- Don't return decimals as string: https://github.com/sequelize/sequelize/issues/8019
