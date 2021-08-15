@@ -1,5 +1,5 @@
 {
-  "name": "emptyout",
+  "name": "remindme",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tiffanyolw/emptyout-server.git"
+    "url": "git+https://github.com/tiffanyolw/remindme-server.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tiffanyolw/emptyout-server/issues"
+    "url": "https://github.com/tiffanyolw/remindme-server/issues"
   },
-  "homepage": "https://github.com/tiffanyolw/emptyout-server#readme",
+  "homepage": "https://github.com/tiffanyolw/remindme-server#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
